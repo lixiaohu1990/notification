@@ -16,15 +16,14 @@
 
 @implementation ViewController{
     Observer *ob;
-    Poster * po;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    ob = [[Observer alloc] init];
+//    Poster *po = [[Poster alloc] init];
     
-    ob = [[Observer alloc] init];
-    Poster *po = [[Poster alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,9 +34,7 @@
     
     NSLog(@"\nnil thread = %@\n", [NSThread currentThread]);
     
-    ob = nil;
-    
-//    po = nil;
+    [ob dealloc];
 }
 
 @end

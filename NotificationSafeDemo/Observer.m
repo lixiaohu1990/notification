@@ -11,6 +11,7 @@
 
 @interface Observer ()
 @property (nonatomic, assign) NSInteger i;
+@property (nonatomic, strong) id observer;
 @end
 @implementation Observer{
 
@@ -18,11 +19,18 @@
 - (instancetype)init{
     if (self = [super init]) {
         
-      
+//       self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:@"TEST" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+//            NSLog(@"\nhandle thread = %@\n", [NSThread currentThread]);
+//            
+//            NSLog(@"handle notification begin");
+//            sleep(5);
+//            
+//            NSLog(@"handle notification end");
+//            
+//            self.i = 10;
+//        }];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"TEST" object:nil];
         NSLog(@"\naddObserver thread = %@\n", [NSThread currentThread]);
-        
-        
 
     }
     
@@ -37,14 +45,18 @@
     
     NSLog(@"handle notification end");
     
-//    self.i = 10;
+    self.i = 10;
 }
 
 - (void)dealloc{
     
-  NSLog(@"dealloc thread = %@", [NSThread currentThread]);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-   
+//  NSLog(@"dealloc thread = %@", [NSThread currentThread]);
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//   
     NSLog(@"notification dealloc");
+    if (self.observer) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+    }
+    self.observer = nil;
 }
 @end

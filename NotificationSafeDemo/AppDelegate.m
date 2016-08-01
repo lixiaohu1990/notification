@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Block.h"
+#import "Test.h"
 @interface AppDelegate ()
+@property (nonatomic, strong) Block *block;
+
+@property (nonatomic, copy) testBlock blockM;
 
 @end
 
@@ -17,6 +21,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    /*
+    Block *block = [[Block alloc] init];
+    block.block = ^{
+        NSLog(@"%@", self.class);
+    };
+    self.block = block;
+    
+    
+    
+//
+    self.block = nil;
+//
+//    Block *block = [[Block alloc] init];
+//    [block alarmWithBlock:^{
+//        NSLog(@"%@", block);
+//    }];
+//    
+//    block = nil;
+     
+     */
+    
+    Test *test  = [[Test alloc] init];
+//    test = nil;
     return YES;
 }
 
